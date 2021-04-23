@@ -1,0 +1,30 @@
+.load-more{
+  display: flex;
+  height: 166px;
+  background-color: #202020;
+  justify-content: center;
+}
+
+.load-more__button{
+  width: 320px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2F2F2F;
+  font-family: Inter, 'Areal', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+
+color: #FFFFFF;
+margin-top: 50px;
+}
+
+.load-more__button:hover{
+  opacity: .8;
+}
+
+.load-more__button:active{
+  opacity: .6;
+}

@@ -1,0 +1,28 @@
+.nav {
+  background-color: #272727;
+}
+
+.nav__list {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.nav__item {
+  margin: 24px 40px 24px;
+}
+
+.nav__link {
+  font-family: Inter, 'Areal', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
+.nav__link:hover {
+  opacity: .8;
+}

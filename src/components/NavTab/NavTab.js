@@ -1,6 +1,5 @@
 import "./NavTab.css";
 import { Link } from "react-router-dom";
-import AboutProject from "../AboutProject/AboutProject";
 
 function NavTab() {
   return (

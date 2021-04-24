@@ -11,7 +11,7 @@ function Navigation({ isLoggedIn }) {
           </Link>
         </li>
         <li className="menu__item">
-          <Link className="menu__link" to="/movies">
+          <Link className="menu__link" to="/saved-movies">
             Сохранённые фильмы
           </Link>
         </li>

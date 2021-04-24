@@ -40,16 +40,18 @@
 
 
 
-.profile__link {
+.profile__button {
   font-weight: 400;
 font-size: 13px;
 line-height: 16px;
 color: #FFFFFF;
 text-decoration: none;
 margin: 204px 0 16px;
+background-color: transparent;
+border: none;
 }
 
-.profile__link_color_red {
+.profile__button_color_red {
   color: #EE3465;
   margin: 0;
 }

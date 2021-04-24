@@ -11,6 +11,7 @@ import Footer from "../Footer/Footer";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
+import Popup from "../Popup/Popup";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           <Navigation isLoggedIn={true}/>
         </Header>
         <Profile />
+        
       </Route>
       <Route path="*">
         <PageNotFound />

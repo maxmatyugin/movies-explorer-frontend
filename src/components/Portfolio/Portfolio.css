@@ -35,3 +35,31 @@
   height: 29px;
   background: url('../../images/arrow-logo.svg')no-repeat 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+  .portfolio__link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+  .portfolio__heading {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 20px;
+  }
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .portfolio__logo {
+    width: 18px;
+    height: 18px;
+  }
+}

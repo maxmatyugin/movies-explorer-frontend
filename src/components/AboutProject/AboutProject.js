@@ -3,22 +3,22 @@ import "./AboutProject.css";
 function AboutProject() {
   return (
     <section className="about">
-      <h2 className="about__heading">О проекте</h2>
+      <h2 className="about__title">О проекте</h2>
       <div className="about__article-wrapper">
         <article className="about__article">
-          <h3 className="article__heading article__heading_place_about">
+          <h3 className="about__heading">
             Дипломный проект включал 5 этапов
           </h3>
-          <p className="article__text">
+          <p className="about__text">
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.
           </p>
         </article>
         <article className="about__article">
-          <h3 className="article__heading article__heading_place_about">
+          <h3 className="about__heading">
             На выполнение диплома ушло 5 недель
           </h3>
-          <p className="article__text">
+          <p className="about__text">
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.
           </p>

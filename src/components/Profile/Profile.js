@@ -12,6 +12,8 @@ function Profile() {
   const [name, setName] = React.useState('Виталий');
   const [email, setEmail] = React.useState('email@yandex.ru');
 
+ 
+
   const handleQuit = () => {
     setIsQuitPopupOpen(true);
   };
@@ -25,6 +27,12 @@ function Profile() {
     setIsEditProfilePopupOpen(false);
   };
 
+  const handleChange = (e) => {
+e.target.name === "input-name" ?
+setName(e.target.value):
+setEmail(e.target.value);
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -35,7 +43,7 @@ function Profile() {
       <article className="profile__info">
         <article className="profile__info-item">
           <h3 className="profile__text">Имя</h3>
-          <p className="profile__text profile__text_align_right">{name}</p>
+          <p className="profile__text profile__text_align_right" >{name}</p>
         </article>
         <article className="profile__info-item">
           <h3 className="profile__text">E-mail</h3>
@@ -66,6 +74,7 @@ function Profile() {
         onSubmit={handleSubmit}
         nameValue={name}
         emailValue={email}
+        onChange={handleChange}
       />
     </section>
   );

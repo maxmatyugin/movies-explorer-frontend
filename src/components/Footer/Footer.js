@@ -8,7 +8,7 @@ function Footer() {
         <p className="footer__author">maxmatyugin &copy; {(new Date()).getFullYear()}</p>
         <ul className="footer__list">
           <li className="footer__list-item">
-            <a className="footer__link">Яндекс.Практикум</a>
+            <a className="footer__link"  >Яндекс.Практикум</a>
           </li>
           <li className="footer__list-item">
             <a className="footer__link">Github</a>

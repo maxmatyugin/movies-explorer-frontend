@@ -1,75 +1,75 @@
 .movie {
-  width: 364px;
-  height: 271px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  overflow: hidden;
+  max-width: 364px;
+  max-height: 271px; 
+  min-width: 300px;
+  min-height: 236px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 34px 34px 100%;
+  align-items: center;
+  grid-template-areas:
+  "title title button"
+  "time time button"
+  "image image image"
+  "image image image";
   background-color: #222222;
 }
 
-.movie__caption {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  /* min-height: 68px; */
-  align-items: center;
-  padding: 14px ;
-}
-
 .movie__title {
+  grid-area: title;
   margin: 0;
-  grid-row: 1;
-  grid-column: 1/2;
   font-family: Inter, 'Areal', sans-serif;
-font-style: normal;
-font-weight: 400;
-font-size: 15px;
-line-height: 18px;
-
-color: #FFFFFF;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+  color: #FFFFFF;
+  margin-left: 14px;
 }
 
 .movie__duration {
-  grid-row: 2;
-  grid-column: 1/2;
+  grid-area: time;
   font-family: Inter, 'Areal', sans-serif;
-font-style: normal;
-font-weight: 400;
-font-size: 11px;
-line-height: 13px;
-color: #8B8B8B;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #8B8B8B;
+  margin-left: 14px;
 }
 
 .movie__save-button {
-  grid-row: 1/3;
-  grid-column: 2;
+  grid-area: button;
   width: 30px;
   height: 30px;
-justify-self: flex-end;
-background: url(../../images/save-inactive.svg) no-repeat;
-background-position: center;
-border: none;
-border-radius: 50%;
-padding: 0;
+  background: url(../../images/save-inactive.svg) no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  margin-right: 14px;
 }
 
-.movie__save-button:hover{
+.movie__save-button_saved {
+  background: url(../../images/save-active.svg) no-repeat;
+}
+
+.movie__save-button_in-list {
+  background: url(../../images/save-delete.svg) no-repeat;
+}
+
+.movie__save-button:hover {
   opacity: .8;
 }
 
-.movie__save-button:active{
+.movie__save-button:active {
   opacity: .6;
 }
 
-.movie__image-container {
-  display: flex;
-  overflow: hidden;
- justify-content: center;
-  
-}
-
 .movie__image {
-  /* width: 100%; */
-  /* height: 100%; */
-  /* object-fit: cover; */
-  /* object-position: center; */
+  grid-area: image;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

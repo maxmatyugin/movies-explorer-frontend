@@ -8,10 +8,9 @@ import Movies from "../Movies/Movies";
 import SavedMovies from "../SavedMovies/SavedMovies";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
-import Register from "../Register/Register";
-import Login from "../Login/Login";
 import Profile from "../Profile/Profile";
-import Popup from "../Popup/Popup";
+import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 function App() {
   return (

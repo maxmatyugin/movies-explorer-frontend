@@ -6,11 +6,24 @@
 
 .movies__list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 364px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(168px, 1fr));
   gap:  30px 24px;
   margin: 0;
   padding: 0;
   padding: 70px 70px 30px;
-  justify-content: center;
+  justify-items: center;
   list-style: none;
 }
+
+@media screen and (max-width: 768px) {
+  .movies__list{
+    padding: 70px 30px 30px;
+  }
+  }
+
+  @media screen and (max-width: 520px) {
+    .movies__list{
+      padding: 40px 10px 30px;
+    }
+    }

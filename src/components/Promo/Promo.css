@@ -22,3 +22,13 @@
   color: #FFFFFF;
   max-width: 730px;
 }
+
+@media screen and (max-width: 375px) {
+  .promo__container {
+    background-size: 248px 248px;
+  }
+  .promo__heading {
+    font-size: 31px;
+line-height: 39px;
+  }
+}

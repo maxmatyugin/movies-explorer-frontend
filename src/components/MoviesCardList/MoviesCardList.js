@@ -3,12 +3,12 @@ import "./MoviesCardList.css";
 
 
 
-function MoviesCardList({movies}) {
+function MoviesCardList({movies, isInSavedList}) {
   return (
     <section className="movies">
       <ul className="movies__list">
         {movies && movies.map((data) => {
-          return <MoviesCard key={data._id} movie={data} />;
+          return <MoviesCard isInSavedList={isInSavedList} key={data._id} movie={data} />;
         })}
       </ul>
     </section>

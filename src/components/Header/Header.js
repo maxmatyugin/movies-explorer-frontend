@@ -1,10 +1,10 @@
 import "./Header.css";
-import logo from '../../images/logo.png';
+import {Link} from 'react-router-dom';
 
 function Header({children}) {
   return (
     <header className="header">
-      <img className="logo" src={logo} alt="Логотип сайта"></img>
+      <Link className="logo" to='/'></Link>
       {children}
     </header>
   );

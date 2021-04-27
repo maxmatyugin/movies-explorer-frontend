@@ -21,6 +21,8 @@
 
 .about__article-wrapper {
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .about__heading {
@@ -84,7 +86,7 @@
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 570px) {
   .about {
     padding: 70px 18px 70px;
   }

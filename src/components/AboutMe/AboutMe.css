@@ -8,6 +8,9 @@
 .about-me__container {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+
+  max-width: 1024px;
   margin-top: 66px;
 }
 
@@ -73,8 +76,13 @@
   margin-right: 20px;
 }
 
+.about-me__link:hover {
+  opacity: .8;
+}
+
 .about-me__image {
   width: 255px;
+  height: 100%;
   border-radius: 10px;
   margin-left: 20px;
 }
@@ -97,7 +105,7 @@
   }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 570px) {
   .about-me {
     padding: 70px 14px 70px;
   }
@@ -129,7 +137,7 @@ line-height: 16px;
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 414px) {
   .about-me__image {
     width: 100%;
   }

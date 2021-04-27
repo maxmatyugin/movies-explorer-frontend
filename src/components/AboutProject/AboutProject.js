@@ -6,9 +6,7 @@ function AboutProject() {
       <h2 className="about__title">О проекте</h2>
       <div className="about__article-wrapper">
         <article className="about__article">
-          <h3 className="about__heading">
-            Дипломный проект включал 5 этапов
-          </h3>
+          <h3 className="about__heading">Дипломный проект включал 5 этапов</h3>
           <p className="about__text">
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.

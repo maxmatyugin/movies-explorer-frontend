@@ -8,13 +8,13 @@ function Footer() {
         <p className="footer__author">maxmatyugin &copy; {(new Date()).getFullYear()}</p>
         <ul className="footer__list">
           <li className="footer__list-item">
-            <a className="footer__link"  >Яндекс.Практикум</a>
+            <a className="footer__link" href="https://praktikum.yandex.ru/" target="_blank" rel="noreferrer" >Яндекс.Практикум</a>
           </li>
           <li className="footer__list-item">
-            <a className="footer__link">Github</a>
+            <a className="footer__link" href="https://github.com/maxmatyugin/" target="_blank" rel="noreferrer">Github</a>
           </li>
           <li className="footer__list-item">
-            <a className="footer__link">Telegram</a>
+            <a className="footer__link" href="http://t.me/maxmatyugin" target="_blank" rel="noreferrer">Telegram</a>
           </li>
         </ul>
       </div>

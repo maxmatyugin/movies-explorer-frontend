@@ -1,18 +1,42 @@
 import "./NavTab.css";
-import { Link } from "react-router-dom";
+import { Link } from "react-scroll";
 
 function NavTab() {
   return (
     <nav className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          <Link to='/'  className="nav__link">О проекте</Link>
+          <Link
+            to="about"
+            className="nav__link"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+          >
+            О проекте
+          </Link>
         </li>
         <li className="nav__item">
-          <Link className="nav__link">Технологии</Link>
+          <Link
+            to="techs"
+            className="nav__link"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+          >
+            Технологии
+          </Link>
         </li>
         <li className="nav__item">
-          <Link className="nav__link">Студент</Link>
+          <Link
+            to="about-me"
+            className="nav__link"
+            activeClass="active"
+            spy={true}
+            smooth={true}
+          >
+            Студент
+          </Link>
         </li>
       </ul>
     </nav>

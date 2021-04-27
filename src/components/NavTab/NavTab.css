@@ -28,7 +28,7 @@
   opacity: .8;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 414px) {
   .nav__item {
     margin: 25px 12px 25px;
   }

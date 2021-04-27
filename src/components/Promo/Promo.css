@@ -23,7 +23,7 @@
   max-width: 730px;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 414px) {
   .promo__container {
     background-size: 248px 248px;
   }

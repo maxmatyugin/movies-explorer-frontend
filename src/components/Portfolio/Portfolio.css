@@ -20,6 +20,11 @@
   line-height: 50px;
   letter-spacing: -0.04em;
   color: #FFFFFF;
+  text-decoration: none;
+}
+
+.portfolio__link:hover {
+  opacity: .8;
 }
 
 .portfolio__container {

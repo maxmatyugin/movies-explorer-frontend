@@ -20,13 +20,20 @@ function AboutMe() {
           </p>
           <ul className="about-me__list">
             <li className="about-me__list-item">
-              <a href="t.me/maxmatyugin" className="about-me__link">
+              <a
+                href="https://t.me/maxmatyugin"
+                rel="noreferrer"
+                target="_blank"
+                className="about-me__link"
+              >
                 Telegram
               </a>
             </li>
             <li className="about-me__list-item">
               <a
                 href="https://github.com/maxmatyugin"
+                rel="noreferrer"
+                target="_blank"
                 className="about-me__link"
               >
                 Github

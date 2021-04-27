@@ -13,7 +13,6 @@
   margin: 0;
 }
 
-
 .menu__link {
   font-weight: 400;
   font-size: 12px;
@@ -21,6 +20,10 @@
   color: #FFFFFF;
   margin-right: 20px;
   text-decoration: none;
+}
+
+.menu__link:hover, .menu__sign-in-link:hover, .menu__profile-link:hover {
+  opacity: .8;
 }
 
 .menu__link_active {
@@ -64,22 +67,37 @@
 
 @media screen and (max-width: 768px) {
   .menu {
-    
     position: absolute;
     top: 0;
     right: -100%;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .5);
     transition: right .3s ease-in-out .3s;
+    z-index: 2;
   }
-
+  .menu:before {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: -2;
+    opacity: 0;
+    transition: opacity .3s linear .3s;
+  }
   .menu_opened {
     right: 0;
   }
-
+  .menu_opened:before {
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+  }
   .menu__list {
     flex-direction: column;
+    box-sizing: border-box;
     justify-content: flex-start;
     align-items: center;
     background-color: #222222;
@@ -87,6 +105,7 @@
     height: 100vh;
     width: 70%;
     padding: 0;
+    padding: 144px 0;
     margin-left: auto;
   }
   .menu__item .menu__link_main {
@@ -97,21 +116,17 @@
     font-size: 18px;
     line-height: 22px;
   }
-  .menu__link_type_profile {
+  .menu__profile-link {
     font-size: 14px;
     line-height: 16px;
+    margin-left: 0;
     padding: 8px 20px 8px;
   }
   .menu__item {
-    
     margin-bottom: 28px;
-  }
-  .menu__item:first-child {
-    margin-top: 128px;
   }
   .menu__item:last-child {
     margin-top: auto;
-    margin-bottom: 90px;
   }
   .menu__link_active {
     font-weight: 400;

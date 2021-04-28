@@ -9,7 +9,6 @@ function NavTab() {
           <Link
             to="about"
             className="nav__link"
-            activeClass="active"
             spy={true}
             smooth={true}
           >
@@ -20,7 +19,6 @@ function NavTab() {
           <Link
             to="techs"
             className="nav__link"
-            activeClass="active"
             spy={true}
             smooth={true}
           >
@@ -31,7 +29,6 @@ function NavTab() {
           <Link
             to="about-me"
             className="nav__link"
-            activeClass="active"
             spy={true}
             smooth={true}
           >

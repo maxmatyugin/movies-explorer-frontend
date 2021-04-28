@@ -15,10 +15,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 396px;
 }
 .sign__top-wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .sign__logo {
@@ -53,6 +55,7 @@
   border-bottom: 1px solid #424242;
   padding-bottom: 10px;
   margin-top: 5px;
+  max-width: 100%;
 }
 .sign__input:last-of-type{
   margin-bottom: 0;
@@ -73,6 +76,10 @@
   color: #EE3465;
   height: 12px;
   margin: 6px 0 6px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .sign__button {
@@ -88,12 +95,30 @@
   margin-bottom: 16px;
 }
 
+.sign__button:disabled{
+  background: #F8F8F8;
+  color: #C2C2C2;
+}
+
 .sign__button:hover {
   opacity: .8;
 }
 
 .sign__button:active {
   opacity: .6;
+}
+
+.sign__botton-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sign__submit-error {
+  margin-bottom: 20px;
+  font-weight: 400;
+font-size: 11px;
+line-height: 13px;
+color: #FF004C;
 }
 
 .sign__span {
@@ -120,7 +145,7 @@
   .sign__form {
     justify-content: center;
   }
-  .sign__button {
+  .sign__botton-wrapper {
     margin-top: 134px;
   }
 }
@@ -139,6 +164,10 @@
     font-size: 12px;
 line-height: 15px;
 margin-top: 0;
+  }
+
+  .sign__botton-wrapper {
+    margin-top: 0;
   }
   .sign__title {
     align-self: center;

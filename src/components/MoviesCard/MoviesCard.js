@@ -1,4 +1,5 @@
 import "./MoviesCard.css";
+import React from 'react';
 
 function MoviesCard({ movie, isInSavedList }) {
   const millisecondsToTime = (mil) => {
@@ -10,7 +11,13 @@ function MoviesCard({ movie, isInSavedList }) {
     return `${hours}ч ${minutes}м`;
   };
 
-  const isSaved = false;
+  const [isSaved, setIsSaved] = React.useState(false);
+
+  const handleSave = () => {
+    isSaved ? setIsSaved(false) : setIsSaved(true);
+  }
+
+  
   const saveButtonClassName = `movie__save-button ${
     isSaved ? "movie__save-button_saved" : ""
   } ${isInSavedList ? "movie__save-button_in-list" : ""}`;
@@ -21,7 +28,7 @@ function MoviesCard({ movie, isInSavedList }) {
       <span className="movie__duration">
         {millisecondsToTime(movie.duration)}
       </span>
-      <button className={saveButtonClassName}></button>
+      <button className={saveButtonClassName} onClick={handleSave}></button>
 
       <img
         className="movie__image"

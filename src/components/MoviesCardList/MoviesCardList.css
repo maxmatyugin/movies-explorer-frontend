@@ -1,29 +1,29 @@
 .movies {
   flex: 1;
   background-color: #202020;
-  
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .movies__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(168px, 1fr));
-  gap:  30px 24px;
-  margin: 0;
+  gap: 30px 24px;
   padding: 0;
-  padding: 70px 70px 30px;
   justify-items: center;
+  align-items: center;
   list-style: none;
+  padding: 70px 70px 30px;
 }
 
-@media screen and (max-width: 768px) {
-  .movies__list{
+@media screen and (max-width: 1088px) {
+  .movies__list {
     padding: 70px 30px 30px;
   }
-  }
+}
 
-  @media screen and (max-width: 520px) {
-    .movies__list{
-      padding: 40px 10px 30px;
-    }
-    }
+@media screen and (max-width: 520px) {
+  .movies__list {
+    padding: 40px 10px 30px;
+  }
+}

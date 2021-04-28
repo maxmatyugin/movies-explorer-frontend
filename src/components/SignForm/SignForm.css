@@ -63,6 +63,7 @@
 
 .sign__input:focus {
   outline: none;
+  border-bottom: 1px solid #ffffff;
 }
 
 .sign__input:invalid {

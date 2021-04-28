@@ -1,19 +1,15 @@
 .movie {
   display: grid;
   overflow: hidden;
-  max-width: 364px;
-  max-height: 271px; 
-  min-width: 300px;
-  min-height: 236px;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 34px 34px 100%;
+  grid-template-rows: 34px 34px auto;
   align-items: center;
-  grid-template-areas:
-  "title title button"
-  "time time button"
-  "image image image"
-  "image image image";
+  grid-template-areas: "title title button" "time time button" "image image image" "image image image";
   background-color: #222222;
+  height: 100%;
+  width: 100%;
+  max-width: 364px;
+  aspect-ratio: 16/12;
 }
 
 .movie__title {

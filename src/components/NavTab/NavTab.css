@@ -1,0 +1,36 @@
+.nav {
+  background-color: #272727;
+}
+
+.nav__list {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.nav__item {
+  margin: 24px 20px 24px;
+}
+
+.nav__link {
+  font-family: Inter, 'Areal', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
+.nav__link:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 414px) {
+  .nav__item {
+    margin: 25px 12px 25px;
+  }
+  
+}

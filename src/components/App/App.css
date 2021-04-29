@@ -1,0 +1,18 @@
+.root {
+  /* max-width: 1280px; */
+  /* min-width: 320px; */
+  position: relative;
+  /* margin: 0 auto; */
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  /* min-height: 100vh; */
+  flex-direction: column;
+  /* justify-items: center; */
+  /* background-color: #000000; */
+  /* color: #ffffff; */
+  /* font-family: Inter, 'Arial', sans-serif; */
+  
+}

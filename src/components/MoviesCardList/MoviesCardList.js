@@ -8,7 +8,7 @@ function MoviesCardList({movies, isInSavedList}) {
     <section className="movies">
       <ul className="movies__list">
         {movies && movies.map((data) => {
-          return <MoviesCard isInSavedList={isInSavedList} key={data._id} movie={data} />;
+          return <MoviesCard isInSavedList={isInSavedList} key={data.id} movie={data} />;
         })}
       </ul>
     </section>

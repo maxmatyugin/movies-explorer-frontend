@@ -1,37 +1,30 @@
 import "./Profile.css";
 import React from "react";
 import Popup from "../Popup/Popup";
-import EditProfilePopup from "../EditProfilePopup/EditProfilePopup";
-import Validation from "../../utils/Validation";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile() {
-  const { handleChange, handleSubmit, errors, values, currentUser } = Validation();
+function Profile({ onLogout }) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [isQuitPopupOpen, setIsQuitPopupOpen] = React.useState(false);
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(
-    false
-  );
 
   const handleQuit = () => {
     setIsQuitPopupOpen(true);
   };
 
-  const handleEditProfile = () => {
-    setIsEditProfilePopupOpen(true);
+  const handleClose = () => {
+    setIsQuitPopupOpen(false);
   };
 
-  const closeAllPopups = () => {
-    setIsQuitPopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-  };
+ 
 
   return (
     <section className="profile">
-      <h2 className="profile__title">{`Привет, ${currentUser.username}!`}</h2>
+      <h2 className="profile__title">{`Привет, ${currentUser.name}!`}</h2>
       <article className="profile__info">
         <article className="profile__info-item">
           <h3 className="profile__text">Имя</h3>
           <p className="profile__text profile__text_align_right">
-            {currentUser.username}
+            {currentUser.name}
           </p>
         </article>
         <article className="profile__info-item">
@@ -41,7 +34,7 @@ function Profile() {
           </p>
         </article>
       </article>
-      <button className="profile__button" onClick={handleEditProfile}>
+      <button className="profile__button" >
         Редактировать
       </button>
       <button
@@ -52,19 +45,10 @@ function Profile() {
       </button>
       <Popup
         isOpen={isQuitPopupOpen}
-        onClose={closeAllPopups}
-        onSubmit={handleSubmit}
-        title={"Вы уверены?"}
-        buttonName={"Подтвердить"}
+        onClose={handleClose}
+        onSubmit={onLogout}
       />
-      <EditProfilePopup
-        isOpen={isEditProfilePopupOpen}
-        onClose={closeAllPopups}
-        onSubmit={handleSubmit}
-        values={values}
-        errors={errors}
-        onChange={handleChange}
-      />
+     
     </section>
   );
 }

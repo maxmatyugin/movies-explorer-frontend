@@ -1,18 +1,17 @@
 import "./Popup.css";
 
-function Popup({ title, buttonName, children, isOpen, onClose, onSubmit }) {
+function Popup({  isOpen, onClose, onSubmit }) {
   return (
     <div className={`popup ${isOpen && "popup_opened"}`}>
       <form className="popup__container" noValidate onSubmit={onSubmit}>
-        <h2 className="popup__title">{title}</h2>
-        {children}
+        <h2 className="popup__title">Вы уверены?</h2>
         <button
           type="reset"
           onClick={onClose}
           className="popup__close-button"
         ></button>
         <button type="submit" className="popup__submit-button">
-          {buttonName}
+          Подтвердить
         </button>
       </form>
     </div>

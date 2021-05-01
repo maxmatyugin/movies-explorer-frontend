@@ -1,12 +1,11 @@
 import "./MoviesCard.css";
-import React from 'react';
+import React from "react";
+import {IMAGE_BASE_URL} from "../../utils/constants";
 
 function MoviesCard({ movie, isInSavedList }) {
-  const millisecondsToTime = (mil) => {
-    const totalSeconds = Math.floor(mil / 1000);
-    const totalMinutes = Math.floor(totalSeconds / 60);
-    const totalHours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
+  const convertDuration = (min) => {
+    const totalHours = Math.floor(min / 60);
+    const minutes = min % 60;
     const hours = totalHours % 24;
     return `${hours}ч ${minutes}м`;
   };
@@ -15,25 +14,26 @@ function MoviesCard({ movie, isInSavedList }) {
 
   const handleSave = () => {
     isSaved ? setIsSaved(false) : setIsSaved(true);
-  }
+  };
 
   
+
   const saveButtonClassName = `movie__save-button ${
     isSaved ? "movie__save-button_saved" : ""
   } ${isInSavedList ? "movie__save-button_in-list" : ""}`;
 
   return (
     <li className="movie">
-      <h2 className="movie__title">{movie.title}</h2>
+      <h2 className="movie__title">{movie.nameRU}</h2>
       <span className="movie__duration">
-        {millisecondsToTime(movie.duration)}
+        {convertDuration(movie.duration)}
       </span>
       <button className={saveButtonClassName} onClick={handleSave}></button>
 
       <img
         className="movie__image"
-        alt={`Картинка к ${movie.title}`}
-        src={movie.image}
+        alt={`Картинка к ${movie.nameRU}`}
+        src={`${IMAGE_BASE_URL}${movie.image?.url}`}
       ></img>
     </li>
   );

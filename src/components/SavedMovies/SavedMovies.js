@@ -1,13 +1,12 @@
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
-import {savedMovies} from '../../utils/constants';
 import "./SavedMovies.css";
 
-function SavedMovies() {
+function SavedMovies({onChange}) {
   return(
     <>
-    <SearchForm />
-    <MoviesCardList movies={savedMovies} isInSavedList={true}/>
+    <SearchForm onChange={onChange}/>
+    <MoviesCardList  isInSavedList={true}/>
     </>
   )
 }

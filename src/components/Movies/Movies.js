@@ -2,12 +2,11 @@ import LoadMore from "../LoadMore/LoadMore";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import "./Movies.css";
-import { movies } from "../../utils/constants";
 
-function Movies() {
+function Movies({movies, onSubmit, onChange, searchValue, handleCheck}) {
   return (
     <>
-      <SearchForm />
+      <SearchForm onSubmit={onSubmit}  onChange={onChange} searchValue={searchValue} handleCheck={handleCheck}/>
       <MoviesCardList movies={movies} />
       <LoadMore />
     </>

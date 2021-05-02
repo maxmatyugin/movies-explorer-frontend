@@ -1,7 +1,12 @@
 import React from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import { register, login, checkToken, updateProfile } from "../../utils/MainApi";
+import {
+  register,
+  login,
+  checkToken,
+  updateProfile,
+} from "../../utils/MainApi";
 import "./App.css";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import PageNotFound from "../PageNotFound/PageNotFound";
@@ -14,13 +19,15 @@ import Register from "../Register/Register";
 import { getMovies } from "../../utils/MoviesApi";
 
 function App() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   const [currentUser, setCurrentUser] = React.useState({});
   const [movies, setMovies] = React.useState([]);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(isLoggedIn);
   const history = useHistory();
   const [submitError, setSubmitError] = React.useState("");
   const [searchValue, setSearchValue] = React.useState("");
   const [isShortMovie, setIsShortMovie] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(() => {
     const foundMovies = JSON.parse(localStorage.getItem("storedMovies"));
@@ -35,7 +42,8 @@ function App() {
       checkToken(token)
         .then((res) => {
           if (res) {
-            setLoggedIn(true);
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            setLoggedIn(isLoggedIn);
             setCurrentUser(res);
           }
         })
@@ -63,9 +71,8 @@ function App() {
       .catch((err) => console.log(err));
   }
 
-
-
   function handleRegister(values) {
+    setIsLoading(true);
     register(values.username, values.email, values.password)
       .then(() => {
         handleLogin(values);
@@ -73,41 +80,51 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err.status}`);
         setSubmitError(err.status);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   function handleLogin(values) {
+    setIsLoading(true);
     login(values.email, values.password)
       .then((res) => {
         if (res) {
           localStorage.setItem("jwt", res.token);
-          setLoggedIn(true);
-          history.push("/movies");
+          localStorage.setItem("isLoggedIn", true);
+          setLoggedIn(localStorage.getItem("isLoggedIn"));
+          
         }
       })
       .catch((err) => {
         console.log(`Ошибка ${err.status}`);
         setSubmitError(err.status);
-      });
+      })
+      .finally(() => {
+        setIsLoading(false);
+        history.push("/movies");
+      })
   }
 
   function handleLogout(e) {
     e.preventDefault();
     localStorage.removeItem("jwt");
-    setLoggedIn(false);
+    localStorage.removeItem("isLoggedIn");
+    setLoggedIn(localStorage.getItem("isLoggedIn"));
     history.push("/");
   }
 
   function handleEditProfile(values) {
     console.log(values);
     updateProfile(values.username, values.email)
-    .then((data) => {
-      setCurrentUser(data);
-    })
-    .catch((err) => {
-      console.log(`Ошибка ${err.status}`);
-      setSubmitError(err.status);
-    });
+      .then((data) => {
+        setCurrentUser(data);
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err.status}`);
+        setSubmitError(err.status);
+      });
   }
 
   function handleSearchInput(e) {
@@ -144,10 +161,10 @@ function App() {
           loggedIn={loggedIn}
         />
         <Route path="/signup">
-          <Register onSubmit={handleRegister} submitError={submitError} />
+          <Register onSubmit={handleRegister} submitError={submitError} isLoading={isLoading}/>
         </Route>
         <Route path="/signin">
-          <Login onSubmit={handleLogin} submitError={submitError} />
+          <Login onSubmit={handleLogin} submitError={submitError} isLoading={isLoading}/>
         </Route>
         <ProtectedRoute
           path="/profile"

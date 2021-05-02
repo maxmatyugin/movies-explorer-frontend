@@ -13,6 +13,7 @@ function SignForm({
   onSubmit,
   errorMessage,
   isValid,
+  isLoading,
 }) {
 
   
@@ -27,7 +28,7 @@ function SignForm({
         <div className="sign__botton-wrapper">
           <span className="sign__submit-error">{errorMessage}</span>
           <button className="sign__button" type="submit" disabled={!isValid}>
-            {buttonName}
+            {isLoading ? "Загрузка..." : buttonName}
           </button>
           <div className="sign__link-wrapper">
             <span className="sign__span">{spanQuestion}</span>

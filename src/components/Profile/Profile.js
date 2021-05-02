@@ -65,7 +65,6 @@ function Profile({ onLogout, isLoggedIn, onSubmit, submitError }) {
             onChange={handleChange}
             disabled={!isEditable}
             value={values.username}
-
           ></input>
           <span className="profile__error">{errors.username}</span>
           <label  className="profile__label">

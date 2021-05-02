@@ -2,7 +2,7 @@ import SignForm from "../SignForm/SignForm";
 import "./Login.css";
 import Validation from "../../utils/Validation";
 
-function Login({onSubmit, submitError}) {
+function Login({onSubmit, submitError, isLoading}) {
   const { handleChange, errors, values, isValid} = Validation();
 
   const handleSubmit = (e) => {
@@ -40,6 +40,7 @@ function Login({onSubmit, submitError}) {
         onSubmit={handleSubmit}
         errorMessage={errorMessage}
         isValid={isValid}
+        isLoading={isLoading}
       >
         <label className="sign__label">E-mail</label>
         <input

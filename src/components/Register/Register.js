@@ -3,7 +3,7 @@ import "./Register.css";
 import React from "react";
 import Validation from "../../utils/Validation";
 
-function Register({onSubmit, submitError}) {
+function Register({onSubmit, submitError, isLoading}) {
   const { handleChange, errors, values, isValid} = Validation();
 
   const handleSubmit = (e) => {
@@ -39,6 +39,7 @@ function Register({onSubmit, submitError}) {
         onSubmit={handleSubmit}
         errorMessage={errorMessage}
         isValid={isValid}
+        isLoading={isLoading}
       >
         <label className="sign__label">Имя</label>
         <input

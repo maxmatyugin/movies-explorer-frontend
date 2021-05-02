@@ -22,6 +22,9 @@ function Login({onSubmit, submitError}) {
     if(status === 404) {
       return " Страница по указанному маршруту не найдена."
     }
+    if(status === 429) {
+      return "Слишком много запросов."
+    }
   }
 
   const errorMessage = errorStatusTransformer(submitError)

@@ -4,9 +4,7 @@ import searchIcon from "../../images/search-icon.svg";
 
 function SearchForm({onSubmit, onChange, searchValue, handleCheck}) {
 
-// const handleCheck = (e) => {
-// console.log(e.target.checked);
-// }
+
 
   return (
     <section className="search-form">

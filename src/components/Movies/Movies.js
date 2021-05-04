@@ -1,6 +1,6 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import LoadMore from "../LoadMore/LoadMore";
+// import LoadMore from "../LoadMore/LoadMore";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import "./Movies.css";
@@ -12,7 +12,12 @@ function Movies({
   searchValue,
   handleCheck,
   isLoggedIn,
+  isLoading,
+  searchError,
+  onSaveMovie,
+  isShortMovie
 }) {
+  
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
@@ -22,8 +27,14 @@ function Movies({
         searchValue={searchValue}
         handleCheck={handleCheck}
       />
-      <MoviesCardList movies={movies} />
-      <LoadMore />
+      <MoviesCardList
+        movies={movies}
+        isLoading={isLoading}
+        searchError={searchError}
+        onSaveMovie={onSaveMovie}
+        isShortMovie={isShortMovie}
+      />
+      {/* <LoadMore /> */}
       <Footer />
     </>
   );

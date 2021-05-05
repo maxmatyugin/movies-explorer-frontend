@@ -53,7 +53,7 @@ function MoviesCard({
         className={saveButtonClassName}
         onClick={movie ? handleLike : handleDelete}
       ></button>
-
+<a className="movie__link" href={movie ? `${movie.trailerLink}` : `${savedMovie.trailer}`} target="_blank" rel="noreferrer" >
       <img
         className="movie__image"
         alt={
@@ -65,6 +65,7 @@ function MoviesCard({
           movie ? `${IMAGE_BASE_URL}${movie.image?.url}` : `${savedMovie.image}`
         }
       ></img>
+      </a>
     </li>
   );
 }

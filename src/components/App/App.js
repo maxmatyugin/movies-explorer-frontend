@@ -151,6 +151,7 @@ function App() {
   function handleSearchSavedMovies(e){ e.preventDefault();
     setIsLoading(true);
     setSearchError("");
+    setSavedMovies(savedMoviesInStore);
     getSavedMovies()
       .then((data) => {
         if (searchValue === "") {

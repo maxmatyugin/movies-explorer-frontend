@@ -1,6 +1,8 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
 import Preloader from "../Preloader/Preloader";
 import "./MoviesCardList.css";
+import React from 'react';
+import LoadMore from '../LoadMore/LoadMore';
 
 function MoviesCardList({
   movies,
@@ -17,17 +19,17 @@ function filterMoviesByDuration(mov) {
   return mov.filter(m => m.duration <= 40);
 }
 
-// if(isShortMovie) {
-//   if(movies) {
-//     filterMoviesByDuration(movies);
-//     console.log();
-//   }  
-//   if(savedMovies){
-//     filterMoviesByDuration(savedMovies);
-//   } 
-// }
+const [items, setItems] = React.useState([]);
+const [visible, setVisible] = React.useState(3);
 
+React.useEffect(() => {
+  setItems(movies)
+  setVisible(3);
+}, [movies]);
 
+const showMoreItems = () => {
+setVisible((prevValue) => prevValue + 3);
+}
 
   return (
     <section className="movies">
@@ -38,7 +40,7 @@ function filterMoviesByDuration(mov) {
       )}
       <ul className="movies__list">
         {movies &&
-          (isShortMovie ? filterMoviesByDuration(movies) : movies).map((data) => {
+          (isShortMovie ? filterMoviesByDuration(items) : items).slice(0, visible).map((data) => {
             return (
               <MoviesCard
                 isInSavedList={isInSavedList}
@@ -60,6 +62,7 @@ function filterMoviesByDuration(mov) {
             );
           })}
       </ul>
+      {movies && (items.length > visible && (<LoadMore onLoadMoreClick={showMoreItems} />))}
     </section>
   );
 }

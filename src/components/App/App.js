@@ -48,11 +48,14 @@ function App() {
             const isLoggedIn = localStorage.getItem("isLoggedIn");
             setLoggedIn(isLoggedIn);
             setCurrentUser(res);
+          } else {
+            localStorage.removeItem("isLoggedIn");
+            setLoggedIn(false);
           }
         })
         .catch((err) => console.log(`Ошибка токена ${err.status}`));
     }
-  }, [loggedIn]);
+  }, []);
 
   //Регистрация
 

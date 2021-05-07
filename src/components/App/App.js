@@ -22,8 +22,10 @@ import {
   getSavedMovies,
   deleteMovie,
 } from "../../utils/MoviesApi";
+import Validation from "../../utils/Validation";
 
 function App() {
+  const { handleChange, errors, values, isValid, setIsValid } = Validation();
   const isLoggedIn = localStorage.getItem("isLoggedIn");
   const storedMovies = JSON.parse(localStorage.getItem("storedMovies"));
   const savedMoviesInStore = JSON.parse(localStorage.getItem("savedMovies"));
@@ -38,7 +40,7 @@ function App() {
   const [searchError, setSearchError] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [isShortMovie, setIsShortMovie] = React.useState(false);
-  
+
   React.useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
@@ -55,11 +57,12 @@ function App() {
         })
         .catch((err) => console.log(`Ошибка токена ${err.status}`));
     }
-  }, []);
+  }, [loggedIn]);
 
   //Регистрация
 
   function handleRegister(values) {
+    setIsValid(false);
     setIsLoading(true);
     register(values.username, values.email, values.password)
       .then(() => {
@@ -75,6 +78,7 @@ function App() {
   }
   // Логин
   function handleLogin(values) {
+    setIsValid(false);
     setIsLoading(true);
     login(values.email, values.password)
       .then((res) => {
@@ -102,8 +106,9 @@ function App() {
     history.push("/");
   }
   // Редактирование профиля
-  function handleEditProfile(values) {
-    console.log(values);
+  function handleEditProfile(values, setIsEditable, setIsSuccessPopupOpen) {
+    setIsValid(false);
+    setIsLoading(true);
     updateProfile(values.username, values.email)
       .then((data) => {
         setCurrentUser(data);
@@ -111,47 +116,81 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err.status}`);
         setSubmitError(err.status);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        setIsEditable(false);
+        setIsSuccessPopupOpen(true);
       });
   }
+
+  // Функция поиска
+  function searchMovies(allMovies) {
+    return new Promise((resolve, reject) => {
+      if (searchValue === "") {
+        return reject("Нужно ввести ключевое слово");
+      }
+      if (!allMovies) {
+        return reject(
+          "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
+        );
+      }
+
+      const filteredData = allMovies.filter((item) =>
+        item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      if (filteredData.length === 0) {
+        reject("Ничего не найдено");
+      }
+      localStorage.setItem("storedMovies", JSON.stringify(filteredData));
+      setMovies(filteredData);
+      resolve();
+    });
+  }
+
   // Обработчик поиска фильмов
   function handleSearchMovies(e) {
     e.preventDefault();
     setIsLoading(true);
     setSearchError("");
     setMovies([]);
-    localStorage.removeItem("storedMovies");
-    getMovies()
-      .then((data) => {
-        if (searchValue === "") {
-          throw new Error("Нужно ввести ключевое слово");
-        }
-        if (!data) {
-          throw new Error(
-            "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз"
-          );
-        }
 
-        const filteredData = data.filter((item) =>
-          item.nameRU.toLowerCase().includes(searchValue.toLowerCase())
-        );
-        if (filteredData.length === 0) {
-          throw new Error("Ничего не найдено");
-        }
+    if (localStorage.getItem("allStoredMovies") === null) {
+      getMovies()
+        .then((data) => {
+          localStorage.setItem("allStoredMovies", JSON.stringify(data));
+          searchMovies(data)
+            .then(() => {})
+            .catch((err) => {
+              console.log(err);
+              setSearchError(err);
+            })
+            .finally(() => {
+              setIsLoading(false);
+            });
+        })
 
-        localStorage.setItem("storedMovies", JSON.stringify(filteredData));
-        setMovies(JSON.parse(localStorage.getItem("storedMovies")));
-      })
-
-      .catch((err) => {
-        console.log(err);
-        setSearchError(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+        .catch((err) => {
+          console.log(err);
+          setSearchError(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      searchMovies(JSON.parse(localStorage.getItem("allStoredMovies")))
+        .then(() => {})
+        .catch((err) => {
+          setSearchError(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }
 
-  function handleSearchSavedMovies(e){ e.preventDefault();
+  function handleSearchSavedMovies(e) {
+    e.preventDefault();
     setIsLoading(true);
     setSearchError("");
     setSavedMovies(savedMoviesInStore);
@@ -173,7 +212,6 @@ function App() {
           throw new Error("Ничего не найдено");
         }
 
-       
         setSavedMovies(filteredData);
       })
 
@@ -225,11 +263,10 @@ function App() {
         .catch((err) => console.log(err));
     }
   }
-// Обрабока короткометражек
-function checkIsShortMovie(e){
-  e.target.checked ? setIsShortMovie(true) : setIsShortMovie(false)
- 
-}
+  // Обрабока короткометражек
+  function checkIsShortMovie(e) {
+    e.target.checked ? setIsShortMovie(true) : setIsShortMovie(false);
+  }
 
   // Удаление фильма, дизлайк
   const handleDeleteMovie = (movie) => {
@@ -287,6 +324,10 @@ function checkIsShortMovie(e){
               onSubmit={handleRegister}
               submitError={submitError}
               isLoading={isLoading}
+              handleChange={handleChange}
+              errors={errors}
+              values={values}
+              isValid={isValid}
             />
           )}
         </Route>
@@ -298,6 +339,10 @@ function checkIsShortMovie(e){
               onSubmit={handleLogin}
               submitError={submitError}
               isLoading={isLoading}
+              handleChange={handleChange}
+              errors={errors}
+              values={values}
+              isValid={isValid}
             />
           )}
         </Route>
@@ -309,6 +354,11 @@ function checkIsShortMovie(e){
           isLoggedIn={loggedIn}
           onSubmit={handleEditProfile}
           submitError={submitError}
+          isLoading={isLoading}
+          isValid={isValid}
+          handleChange={handleChange}
+          errors={errors}
+          values={values}
         />
         <Route path="*">
           <PageNotFound />

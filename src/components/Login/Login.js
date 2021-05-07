@@ -1,9 +1,7 @@
 import SignForm from "../SignForm/SignForm";
 import "./Login.css";
-import Validation from "../../utils/Validation";
 
-function Login({onSubmit, submitError, isLoading}) {
-  const { handleChange, errors, values, isValid} = Validation();
+function Login({onSubmit, submitError, isLoading, handleChange, errors, values, isValid}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +28,6 @@ function Login({onSubmit, submitError, isLoading}) {
   const errorMessage = errorStatusTransformer(submitError)
 
   return (
-    <>
       <SignForm
         title="Рады видеть"
         buttonName="Войти"
@@ -64,7 +61,6 @@ function Login({onSubmit, submitError, isLoading}) {
         ></input>
         <span className="sign__error">{errors.password}</span>
       </SignForm>
-    </>
   );
 }
 

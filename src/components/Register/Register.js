@@ -1,10 +1,8 @@
 import SignForm from "../SignForm/SignForm";
 import "./Register.css";
 import React from "react";
-import Validation from "../../utils/Validation";
 
-function Register({onSubmit, submitError, isLoading}) {
-  const { handleChange, errors, values, isValid} = Validation();
+function Register({onSubmit, submitError, isLoading, handleChange, errors, values, isValid}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,7 +27,6 @@ function Register({onSubmit, submitError, isLoading}) {
   const errorMessage = errorStatusTransformer(submitError)
 
   return (
-    <>
       <SignForm
         title="Добро пожаловать"
         buttonName="Зарегистрироваться"
@@ -75,7 +72,6 @@ function Register({onSubmit, submitError, isLoading}) {
         ></input>
         <span className="sign__error">{errors.password}</span>
       </SignForm>
-    </>
   );
 }
 

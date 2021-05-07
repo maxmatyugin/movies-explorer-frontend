@@ -1,11 +1,8 @@
 import "./SearchForm.css";
-import React from 'react';
+import React from "react";
 import searchIcon from "../../images/search-icon.svg";
 
-function SearchForm({onSubmit, onChange, searchValue, handleCheck}) {
-
-
-
+function SearchForm({ onSubmit, onChange, searchValue, handleCheck }) {
   return (
     <section className="search-form">
       <form noValidate onSubmit={onSubmit} className="search-form__form">
@@ -19,16 +16,21 @@ function SearchForm({onSubmit, onChange, searchValue, handleCheck}) {
           type="text"
           placeholder="Фильм"
           name="search"
-          value={searchValue || ''}
+          value={searchValue || ""}
           required
           onChange={onChange}
         ></input>
         <button className="search-form__submit-button" type="submit"></button>
-        <label className="search-form__checkbox-label">Короткометражки
-          <input className="search-form__checkbox" type="checkbox" onChange={handleCheck}></input>
-            <span className="checkbox">
-              <span className="checkbox__switch"></span>
-            </span>
+        <label className="search-form__checkbox-label">
+          Короткометражки
+          <input
+            className="search-form__checkbox"
+            type="checkbox"
+            onChange={handleCheck}
+          ></input>
+          <span className="checkbox">
+            <span className="checkbox__switch"></span>
+          </span>
         </label>
       </form>
     </section>

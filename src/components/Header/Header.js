@@ -1,11 +1,12 @@
 import "./Header.css";
 import { Link } from 'react-router-dom';
+import Navigation from '../Navigation/Navigation';
 
-function Header({children}) {
+function Header({isLoggedIn}) {
   return (
     <header className="header">
       <Link className="logo" to='/'></Link>
-      {children}
+      <Navigation isLoggedIn={isLoggedIn}/>
     </header>
   );
 }

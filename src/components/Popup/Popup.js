@@ -1,11 +1,10 @@
 import "./Popup.css";
 
-function Popup({ title, buttonName, children, isOpen, onClose, onSubmit }) {
+function Popup({  isOpen, onClose, onSubmit, title, buttonName }) {
   return (
     <div className={`popup ${isOpen && "popup_opened"}`}>
       <form className="popup__container" noValidate onSubmit={onSubmit}>
         <h2 className="popup__title">{title}</h2>
-        {children}
         <button
           type="reset"
           onClick={onClose}

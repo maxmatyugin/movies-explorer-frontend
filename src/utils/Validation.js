@@ -1,5 +1,4 @@
 import React from "react";
-import {initialProfile} from '../utils/constants';
 
 function Validation() {
   const [errors, setErrors] = React.useState({
@@ -12,35 +11,9 @@ function Validation() {
     email: "",
     password: "",
   });
-  const [currentUser, setCurrentUser] = React.useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [submitError, setSubmitError] = React.useState("");
-  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = React.useState(
-    false
-  );
+  const [isValid, setIsValid] = React.useState(false);
 
-  React.useEffect(() => {
-    const { username, email, password} = initialProfile;
-    setCurrentUser({
-      ...currentUser,
-      username: username,
-      email: email,
-      password: password,
-    })
-  }, [])
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitError("API ещё не подключен");
-    setCurrentUser({
-      username: values.username,
-      email: values.email,
-      password: values.password,
-    })
-  };
 
   const handleChange = (e) => {
     const { name, validationMessage, value } = e.target;
@@ -52,16 +25,25 @@ function Validation() {
       ...values,
       [name]: value,
     });
+    setIsValid(e.target.closest("form").checkValidity());
   };
 
+  const resetForm = React.useCallback(
+    (newValues = {}, newErrors = {}, newIsValid = false) => {
+      setValues(newValues);
+      setErrors(newErrors);
+      setIsValid(newIsValid);
+    },
+    [setValues, setErrors, setIsValid]
+  );
+
   return {
+    isValid,
     handleChange,
-    handleSubmit,
     errors,
     values,
-    submitError,
-    isSubmitButtonDisabled,
-    currentUser
+    resetForm,
+    setIsValid,
   };
 }
 
